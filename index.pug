@@ -30,7 +30,7 @@ html
             .form
               .form-group
                 label 實領 #[small.text-secondary  / 應發給員工的金額 = 薪資 - 個人負擔]
-                input.form-control(data-var="pay")
+                input.form-control(data-var="pay",disabled)
         .col-sm-4
           .card.info: .card-body
             h3 勞保/勞退
@@ -38,17 +38,17 @@ html
             .form
               .form-group
                 label 個人負擔
-                input.form-control(data-var="bli-idv")
+                input.form-control(data-var="bli-idv",disabled)
               .form-group
                 label 單位負擔
-                input.form-control(data-var="bli-com")
+                input.form-control(data-var="bli-com",disabled)
               .form-group
                 label 勞退 ( 單位提撥 )
-                input.form-control(data-var="bli-ret")
+                input.form-control(data-var="bli-ret",disabled)
               hr
               .form-group
                 label 合計
-                input.form-control(data-var="bli")
+                input.form-control(data-var="bli",disabled)
 
         .col-sm-4
           .card.info: .card-body
@@ -57,14 +57,14 @@ html
             .form
               .form-group
                 label 個人負擔
-                input.form-control(data-var="nhi-idv")
+                input.form-control(data-var="nhi-idv",disabled)
               .form-group
                 label 單位負擔
-                input.form-control(data-var="nhi-com")
+                input.form-control(data-var="nhi-com",disabled)
               hr
               .form-group
                 label 合計
-                input.form-control(data-var="nhi")
+                input.form-control(data-var="nhi",disabled)
   script(src="assets/ldui/ldui.min.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js")
   script(src="index.js")
