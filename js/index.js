@@ -2,7 +2,7 @@
 (function(){
   var nhi, el, calc;
   nhi = {};
-  Papa.parse("data/nhi-108-boss.csv", {
+  Papa.parse("assets/data/nhi-108-boss.csv", {
     download: true,
     header: true,
     dynamicTyping: true,
@@ -14,7 +14,7 @@
       return calc();
     }
   });
-  Papa.parse("data/nhi-109-worker.csv", {
+  Papa.parse("assets/data/nhi-109-worker.csv", {
     download: true,
     header: true,
     dynamicTyping: true,
@@ -27,7 +27,7 @@
     }
   });
   el = {};
-  ['salary', 'family-count', 'is-boss', 'pay', 'bli-idv', 'bli-com', 'bli-ret', 'bli', 'nhi-idv', 'nhi-com', 'nhi'].map(function(name){
+  ['salary', 'family-count', 'is-boss', 'pay', 'bli-idv', 'bli-com', 'bli-ret', 'bli', 'nhi-idv', 'nhi-com', 'nhi', 'disaster-rate'].map(function(name){
     return el[name] = ld$.find(document, "*[data-var=" + name + "]", 0);
   });
   el.salary.addEventListener('keyup', function(){
@@ -39,11 +39,17 @@
   el["is-boss"].addEventListener('click', function(){
     return calc();
   });
+  el["is-boss"].addEventListener('input', function(){
+    return calc();
+  });
+  el["disaster-rate"].addEventListener('input', function(){
+    return calc();
+  });
   calc = function(){
     var salary, isBoss, blis, v, minus, data, i$, i, obj, familyCount, v1, v2;
     salary = +el.salary.value;
     isBoss = el["is-boss"].checked;
-    blis = [10, 1, 0.18].map(function(it){
+    blis = [10, 1, +el["disaster-rate"].value].map(function(it){
       return salary * it * 0.01;
     });
     v = blis[0] + (isBoss
