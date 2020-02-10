@@ -10,7 +10,7 @@
       nhi.boss.sort (a, b) -> a.salary - b.salaray
       calc!
 
-  Papa.parse "data/nhi-108-worker.csv", do
+  Papa.parse "data/nhi-109-worker.csv", do
     download: true
     header: true
     dynamicTyping: true
