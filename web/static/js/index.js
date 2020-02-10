@@ -2,7 +2,7 @@
 (function(){
   var nhi, el, calc;
   nhi = {};
-  Papa.parse("data/nhi-108-boss.csv", {
+  Papa.parse("assets/data/nhi-108-boss.csv", {
     download: true,
     header: true,
     dynamicTyping: true,
@@ -14,7 +14,7 @@
       return calc();
     }
   });
-  Papa.parse("data/nhi-109-worker.csv", {
+  Papa.parse("assets/data/nhi-109-worker.csv", {
     download: true,
     header: true,
     dynamicTyping: true,
@@ -37,6 +37,12 @@
     return calc();
   });
   el["is-boss"].addEventListener('click', function(){
+    return calc();
+  });
+  el["is-boss"].addEventListener('input', function(){
+    return calc();
+  });
+  el["disaster-rate"].addEventListener('input', function(){
     return calc();
   });
   calc = function(){
