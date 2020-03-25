@@ -27,7 +27,7 @@
     }
   });
   el = {};
-  ['salary', 'family-count', 'is-boss', 'pay', 'bli-idv', 'bli-com', 'bli-ret', 'bli', 'nhi-idv', 'nhi-com', 'nhi', 'disaster-rate'].map(function(name){
+  ['salary', 'family-count', 'is-boss', 'pay', 'bli-idv', 'bli-com', 'bli-salary', 'bli-ret', 'bli', 'nhi-idv', 'nhi-com', 'nhi', 'disaster-rate'].map(function(name){
     return el[name] = ld$.find(document, "*[data-var=" + name + "]", 0);
   });
   el.salary.addEventListener('keyup', function(){
@@ -57,8 +57,11 @@
       : blis[1]);
     el["bli-idv"].value = minus = Math.round(v * 0.2);
     el["bli-com"].value = Math.round(v * 0.7) + Math.round(blis[2]);
+    el["bli-salary"].value = isBoss
+      ? 0
+      : Math.round(salary * 0.025 * 0.01);
     el["bli-ret"].value = Math.round(salary * 0.06);
-    el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value);
+    el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value) + (+el["bli-salary"].value);
     data = isBoss
       ? nhi.boss
       : nhi.worker;

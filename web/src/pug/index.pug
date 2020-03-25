@@ -17,7 +17,7 @@ html
             .form
               .form-group
                 label 薪資 #[small.text-secondary  / 跟員工說會給的數字]
-                input.form-control(placeholder="2019年起最低薪資為 23,100 NTD",data-var="salary",value="23100")
+                input.form-control(placeholder="2020年起最低薪資為 23,800 NTD",data-var="salary",value="23800")
               .form-group
                 label 眷口數 #[small.text-secondary  / 除自己外，多少人跟自己一起報健保?]
                 select.form-control(data-var="family-count")
@@ -33,7 +33,7 @@ html
               .form-group
                 label 實領 #[small.text-secondary  / 應發給員工的金額 = 薪資 - 個人負擔]
                 input.form-control(data-var="pay",disabled)
-          .card.info: .card-body
+          .card: .card-body
             h3 公司資訊
             hr
             .form
@@ -52,13 +52,18 @@ html
               .form-group
                 label 單位負擔
                 input.form-control(data-var="bli-com",disabled)
-              .form-group
-                label 勞退 ( 單位提撥 )
-                input.form-control(data-var="bli-ret",disabled)
               hr
+              .form-group
+                label 工資墊償基金 #[span.text-muted.text-sm / 單位全額負擔]
+                input.form-control(data-var="bli-salary",disabled)
               .form-group
                 label 合計
                 input.form-control(data-var="bli",disabled)
+              hr
+              .form-group
+                label 勞退 ( 單位提撥 )
+                input.form-control(data-var="bli-ret",disabled)
+
 
         .col-sm-4
           .card.info: .card-body

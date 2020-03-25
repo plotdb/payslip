@@ -20,7 +20,11 @@
       calc!
 
   el = {}
-  <[salary family-count is-boss pay bli-idv bli-com bli-ret bli nhi-idv nhi-com nhi disaster-rate]>.map (name) ->
+  <[
+    salary family-count is-boss pay
+    bli-idv bli-com bli-salary bli-ret bli
+    nhi-idv nhi-com nhi disaster-rate
+  ]>.map (name) ->
     el[name] = ld$.find(document, "*[data-var=#name]", 0)
 
   el.salary.addEventListener \keyup, -> calc!
@@ -35,8 +39,9 @@
     v = (blis.0 + (if is-boss => 0 else blis.1))
     el["bli-idv"].value = minus = Math.round(v * 0.2)
     el["bli-com"].value = Math.round(v * 0.7) + Math.round(blis.2)
+    el["bli-salary"].value = (if is-boss => 0 else Math.round(salary * 0.025 * 0.01))
     el["bli-ret"].value = Math.round(salary * 0.06)
-    el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value)
+    el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value) + (+el["bli-salary"].value)
     data = if is-boss => nhi.boss else nhi.worker
     if data =>
       for i from data.length - 1 to 0 by -1  =>
