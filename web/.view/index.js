@@ -1,4 +1,4 @@
- (function() { function pug_attr(t,e,n,f){return!1!==e&&null!=e&&(e||"class"!==t&&"style"!==t)?!0===e?" "+(f?t:t+'="'+t+'"'):("function"==typeof e.toJSON&&(e=e.toJSON()),"string"==typeof e||(e=JSON.stringify(e),n||-1===e.indexOf('"'))?(n&&(e=pug_escape(e))," "+t+'="'+e+'"'):" "+t+"='"+e.replace(/'/g,"&#39;")+"'"):""}
+ (function() { function pug_attr(t,e,n,r){if(!1===e||null==e||!e&&("class"===t||"style"===t))return"";if(!0===e)return" "+(r?t:t+'="'+t+'"');var f=typeof e;return"object"!==f&&"function"!==f||"function"!=typeof e.toJSON||(e=e.toJSON()),"string"==typeof e||(e=JSON.stringify(e),n||-1===e.indexOf('"'))?(n&&(e=pug_escape(e))," "+t+'="'+e+'"'):" "+t+"='"+e.replace(/'/g,"&#39;")+"'"}
 function pug_attrs(t,r){var a="";for(var s in t)if(pug_has_own_property.call(t,s)){var u=t[s];if("class"===s){u=pug_classes(u),a=pug_attr(s,u,!1,r)+a;continue}"style"===s&&(u=pug_style(u)),a+=pug_attr(s,u,!1,r)}return a}
 function pug_classes(s,r){return Array.isArray(s)?pug_classes_array(s,r):s&&"object"==typeof s?pug_classes_object(s):s||""}
 function pug_classes_array(r,a){for(var s,e="",u="",c=Array.isArray(a),g=0;g<r.length;g++)(s=pug_classes(r[g]))&&(c&&a[g]&&(s=pug_escape(s)),e=e+u+s,u=" ");return e}
@@ -644,7 +644,7 @@ pug_html = pug_html + "\u003Cdiv class=\"w-75 m-auto\"\u003E";
 ;pug_debug_line = 11;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003Cdiv class=\"text-muted mt-4\"\u003E";
 ;pug_debug_line = 11;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
-pug_html = pug_html + "注意：公式 \u002F 級距表版本為 109 年版\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "注意：公式 \u002F 級距表版本為 110 年版\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 12;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003Cdiv class=\"row\"\u003E";
 ;pug_debug_line = 13;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
@@ -674,7 +674,7 @@ pug_html = pug_html + " \u002F 跟員工說會給的數字\u003C\u002Fsmall\u003
 ;pug_debug_line = 19;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003C\u002Flabel\u003E";
 ;pug_debug_line = 20;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
-pug_html = pug_html + "\u003Cinput class=\"form-control\" placeholder=\"2020年起最低薪資為 23,800 NTD\" data-var=\"salary\" value=\"23800\"\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cinput class=\"form-control\" placeholder=\"2021年起最低薪資為 24,000 NTD\" data-var=\"salary\" value=\"24000\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 21;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003Cdiv class=\"form-group\"\u003E";
 ;pug_debug_line = 22;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
