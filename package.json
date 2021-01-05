@@ -14,7 +14,7 @@
     "npm": ">=6.4.1"
   },
   "scripts": {
-    "start": "npx server -r web"
+    "start": "npx server -r web -o true"
   },
   "devDependencies": {
     "livescript": ">=1.6.0",
