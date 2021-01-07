@@ -40,6 +40,11 @@ html
               .form-group
                 label 職災費率 #[small.text-muted  / 各行業不同, 可至勞保投保系統查]
                 input.form-control(data-var="disaster-rate",value="0.18")
+              hr
+              .form-group
+                label 帳單數字 #[small.text-muted  / 勞保、工資墊償、勞退、健保等]
+                input.form-control(data-var="bill-total",value="",disabled)
+              hr
 
         .col-sm-4
           .card.info: .card-body

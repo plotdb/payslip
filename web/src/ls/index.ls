@@ -42,6 +42,7 @@
     "nhi-com",          # 健保/公司負擔
     "nhi",              # 健保(個人+公司)
     "disaster-rate",    # 職災費率
+    "bill-total",       # 帳單合計
   ]
     .map (name) ->
       el[name] = ld$.find(document, "*[data-var=#name]", 0)
@@ -75,6 +76,7 @@
         minus += v1
         break
     el["pay"].value = salary - minus
+    el["bill-total"].value = [el["nhi"].value, el["bli"].value, el["bli-ret"].value].reduce(((a,b) -> a + +b),0)
 
   calc!
 )!

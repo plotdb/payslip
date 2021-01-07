@@ -34,7 +34,7 @@
     "就業保費": 0.01,
     "工資墊償": 0.025 * 0.01
   };
-  ["salary", "family-count", "is-boss", "pay", "bli-idv", "bli-com", "bli-salary", "bli", "bli-ret", "nhi-idv", "nhi-com", "nhi", "disaster-rate"].map(function(name){
+  ["salary", "family-count", "is-boss", "pay", "bli-idv", "bli-com", "bli-salary", "bli", "bli-ret", "nhi-idv", "nhi-com", "nhi", "disaster-rate", "bill-total"].map(function(name){
     return el[name] = ld$.find(document, "*[data-var=" + name + "]", 0);
   });
   el.salary.addEventListener('keyup', function(){
@@ -89,7 +89,10 @@
         break;
       }
     }
-    return el["pay"].value = salary - minus;
+    el["pay"].value = salary - minus;
+    return el["bill-total"].value = [el["nhi"].value, el["bli"].value, el["bli-ret"].value].reduce(function(a, b){
+      return a + +b;
+    }, 0);
   };
   return calc();
 })();
