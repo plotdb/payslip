@@ -1,7 +1,7 @@
 (function(){
   var nhi, el, rates, calc;
   nhi = {};
-  Papa.parse("assets/data/nhi-110-boss.csv", {
+  Papa.parse("assets/data/nhi-111-boss.csv", {
     download: true,
     header: true,
     dynamicTyping: true,
@@ -13,7 +13,7 @@
       return calc();
     }
   });
-  Papa.parse("assets/data/nhi-110-worker.csv", {
+  Papa.parse("assets/data/nhi-111-worker.csv", {
     download: true,
     header: true,
     dynamicTyping: true,
@@ -67,7 +67,9 @@
     el["bli-salary"].value = isBoss
       ? 0
       : Math.round(salary * rates["工資墊償"]);
-    el["bli-ret"].value = Math.round(salary * 0.06);
+    el["bli-ret"].value = isBoss
+      ? 0
+      : Math.round(salary * 0.06);
     el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value) + (+el["bli-salary"].value);
     data = isBoss
       ? nhi.boss

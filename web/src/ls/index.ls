@@ -1,7 +1,7 @@
 (->
 
   nhi = {}
-  Papa.parse "assets/data/nhi-110-boss.csv", do
+  Papa.parse "assets/data/nhi-111-boss.csv", do
     download: true
     header: true
     dynamicTyping: true
@@ -10,7 +10,7 @@
       nhi.boss.sort (a, b) -> a.salary - b.salaray
       calc!
 
-  Papa.parse "assets/data/nhi-110-worker.csv", do
+  Papa.parse "assets/data/nhi-111-worker.csv", do
     download: true
     header: true
     dynamicTyping: true
@@ -60,7 +60,7 @@
     el["bli-idv"].value = minus = Math.round(v * rates["bli-idv"])
     el["bli-com"].value = Math.round(v * rates["bli-com"]) + Math.round(blis.2)
     el["bli-salary"].value = (if is-boss => 0 else Math.round(salary * rates["工資墊償"]))
-    el["bli-ret"].value = Math.round(salary * 0.06)
+    el["bli-ret"].value = if is-boss => 0 else Math.round(salary * 0.06)
     el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value) + (+el["bli-salary"].value)
     data = if is-boss => nhi.boss else nhi.worker
     if data =>
