@@ -1,14 +1,21 @@
 doctype html
 html
-  include /../../static/assets/lib/ldui/pug/ldui.pug
+  include @/@loadingio/bootstrap.ext/dist/index.pug
   head
     meta(charset="utf-8")
-    link(rel="stylesheet",href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
-    link(rel="stylesheet",href="assets/lib/ldui/ldui.min.css")
-    link(rel="stylesheet",href="css/index.css")
+    +css([
+      {name: "bootstrap", version: "main", path: "css/bootstrap.min.css"},
+      {name: "@loadingio/bootstrap.ext", version: "main", path: "index.min.css"},
+      {url: "css/index.css"}
+    ])
   body
     .w-75.m-auto
-      .text-muted.my-4 注意：公式 / 級距表版本為 111 年版
+      .text-muted.my-4.d-flex.align-items-center
+        span 注意：公式 / 級距表版本為
+        select.form-control.form-control-sm.mx-2(data-var="year",style="width:5em")
+          option(value="111") 111
+          option(value="110") 110
+        span 年版
       .row
         .col-sm-4
           .card.info.mb-2: .card-body
@@ -85,6 +92,8 @@ html
               .form-group
                 label 合計
                 input.form-control(data-var="nhi",disabled)
-  script(src="assets/lib/ldui/ldui.min.js")
-  script(src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js")
-  script(src="js/index.js")
+  +script([
+    {name: "papaparse", version: "main", path: "papaparse.min.js"},
+    {name: "@loadingio/ldquery", version: "main", path: "ldq.min.js"},
+    {url: "js/index.js"}
+  ])
