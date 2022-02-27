@@ -381,7 +381,7 @@ pug_html = pug_html + " \u002F 各行業不同, 可至勞保投保系統查\u003
 ;pug_debug_line = 48;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003C\u002Flabel\u003E";
 ;pug_debug_line = 49;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
-pug_html = pug_html + "\u003Cinput class=\"form-control\" data-var=\"disaster-rate\" value=\"0.17\"\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cinput class=\"form-control\" data-var=\"disaster-rate\" value=\"0.16\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 50;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003Chr\u003E";
 ;pug_debug_line = 51;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
