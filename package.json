@@ -17,8 +17,8 @@
     "start": "npx server -r web -o true"
   },
   "devDependencies": {
-    "@zbryikt/template": "^2.3.33",
-    "fedep": "^0.0.17",
+    "@zbryikt/template": "^2.3.45",
+    "fedep": "^1.1.11",
     "livescript": ">=1.6.0",
     "stylus": "^0.55.0",
     "uglify-js": "^3.2.0",
@@ -35,8 +35,8 @@
     ]
   },
   "dependencies": {
-    "@loadingio/bootstrap.ext": "^0.0.3",
-    "@loadingio/ldquery": "^2.2.1",
+    "@loadingio/bootstrap.ext": "^0.0.9",
+    "@loadingio/ldquery": "^3.0.4",
     "bootstrap": "^4.6.1",
     "bootstrap.native": "^4.0.7",
     "papaparse": "^5.3.1"
