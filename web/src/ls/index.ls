@@ -5,7 +5,7 @@ rates = do
   "bli-idv": 0.2
   "bli-com": 0.7
   "bli-gov": 0.1
-  "普通保費": 0.105
+  "普通保費": 0.11
   "就業保費": 0.01
   "工資墊償": 0.025 * 0.01
 
@@ -105,4 +105,4 @@ calc = ~>
   el["pay"].value = salary - minus
   el["bill-total"].value = [el["nhi"].value, el["bli"].value, el["bli-ret"].value].reduce(((a,b) -> a + +b),0)
 
-prepare 111
+prepare 112

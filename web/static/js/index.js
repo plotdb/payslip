@@ -7,7 +7,7 @@
     "bli-idv": 0.2,
     "bli-com": 0.7,
     "bli-gov": 0.1,
-    "普通保費": 0.105,
+    "普通保費": 0.11,
     "就業保費": 0.01,
     "工資墊償": 0.025 * 0.01
   };
@@ -144,7 +144,7 @@
       return a + +b;
     }, 0);
   };
-  return prepare(111);
+  return prepare(112);
 });
 function import$(obj, src){
   var own = {}.hasOwnProperty;
