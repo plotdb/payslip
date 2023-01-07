@@ -9,7 +9,7 @@ html
       {url: "css/index.css"}
     ])
   body
-    .w-75.m-auto
+    .w-1024.rwd.m-auto
       .text-muted.my-4.d-flex.align-items-center
         span 注意：公式 / 級距表版本為
         select.form-control.form-control-sm.mx-2(data-var="year",style="width:5em")
@@ -93,6 +93,41 @@ html
               .form-group
                 label 合計
                 input.form-control(data-var="nhi",disabled)
+  hr
+  .w-1024.rwd.m-auto
+    .row
+      .col-sm-8
+        .card.info: .card-body
+          h3 獎金
+          ul.text-muted.pl-3
+            li 所得稅: 稅額 2000 以上，代扣 5% 。(無條件捨去)
+            li 二代健保(獎金): 全年超出四倍薪資部份, 2.11% (四捨五入, 從獎金中扣除)
+            li 二代健保(薪資): 公司另繳總發薪 - 投保薪(不計雇主) 的 2.11%. (四捨五入)
+          hr
+          .form-group
+            label 獎金金額
+            input.form-control(data-var="prize")
+          .form-group
+            label 受獎人之健保投保薪資 #[span.text-muted.text-sm / 注意, 獎金累加超過四倍此值後都需計入二代健保]
+            input.form-control(data-var="prize-minus")
+          .form-group
+            label 代扣所得稅
+            input.form-control(data-var="prize-pretax", disabled)
+          .form-group
+            label 二代健保(獎金部份) #[span.text-muted.text-sm / 個人負擔]
+            input.form-control(data-var="prize-nhi1", disabled)
+          .form-group
+            label 二代健保(薪資部份) #[span.text-muted.text-sm / 公司負擔]
+            input.form-control(data-var="prize-nhi2", disabled)
+            span.text-danger.text-sm 注意，實際金額尚需計入其它如雇主薪資部份
+          .form-group
+            label 實領獎金
+            input.form-control(data-var="prize-real", disabled)
+          .form-group
+            label 公司實際花費
+            input.form-control(data-var="prize-spend", disabled)
+    +nbr(3)
+
   +script([
     {name: "papaparse", version: "main", path: "papaparse.min.js"},
     {name: "@loadingio/ldquery"},

@@ -5,6 +5,7 @@ rates = do
   "bli-idv": 0.2
   "bli-com": 0.7
   "bli-gov": 0.1
+  "nhi-2nd": 0.0211
   "普通保費": 0.11
   "就業保費": 0.01
   "工資墊償": 0.025 * 0.01
@@ -68,6 +69,13 @@ prepare = (year) ~>
   "nhi",              # 健保(個人+公司)
   "disaster-rate",    # 職災費率
   "bill-total",       # 帳單合計
+  "prize",            # 獎金
+  "prize-minus",      # 用於計算獎金之投保薪資
+  "prize-pretax",     # 獎金代扣所得稅
+  "prize-nhi1",       # 獎金代扣二代健保
+  "prize-nhi2",       # 獎金 - 公司負擔二代健保
+  "prize-real",       # 獎金 - 實領 (減去代扣所得稅與二代健保)
+  "prize-spend",      # 針對獎金, 公司的實際支出
 ]
   .map (name) ->
     el[name] = ld$.find(document, "*[data-var=#name]", 0)
@@ -78,6 +86,17 @@ el["is-boss"].addEventListener \click, -> calc!
 el["is-boss"].addEventListener \input, -> calc!
 el["disaster-rate"].addEventListener \input, -> calc!
 el["year"].addEventListener \change, -> prepare el["year"].value
+el["prize"].addEventListener \keyup, -> prize-calc!
+el["prize-minus"].addEventListener \keyup, -> prize-calc!
+prize-calc = ->
+  prize = +(el["prize"].value or 0)
+  prize-minus = +(el["prize-minus"].value or 0) * 4
+  el["prize-pretax"].value = pretax = Math.floor(prize * 0.05)
+  el["prize-nhi1"].value = nhi1 = Math.round(((prize - prize-minus) >? 0) * rates["nhi-2nd"])
+  el["prize-nhi2"].value = nhi2 = Math.round(prize * rates["nhi-2nd"])
+  el["prize-real"].value = prize - pretax - nhi1
+  el["prize-spend"].value = prize + nhi2
+
 calc = ~>
   salary = +el.salary.value
   bli-salary = (bli.worker.filter(-> it.salary >= salary).0 or bli.worker[* - 1]).salary

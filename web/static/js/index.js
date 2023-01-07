@@ -1,12 +1,13 @@
 (function(it){
   return it.apply({});
 })(function(){
-  var ref$, nhi, bli, el, rates, parse, prepare, calc, this$ = this;
+  var ref$, nhi, bli, el, rates, parse, prepare, prizeCalc, calc, this$ = this;
   ref$ = [{}, {}, {}], nhi = ref$[0], bli = ref$[1], el = ref$[2];
   rates = {
     "bli-idv": 0.2,
     "bli-com": 0.7,
     "bli-gov": 0.1,
+    "nhi-2nd": 0.0211,
     "普通保費": 0.11,
     "就業保費": 0.01,
     "工資墊償": 0.025 * 0.01
@@ -76,7 +77,7 @@
       return calc();
     });
   };
-  ["year", "salary", "family-count", "is-boss", "pay", "bli-idv", "bli-com", "bli-salary", "bli", "bli-ret", "nhi-idv", "nhi-com", "nhi", "disaster-rate", "bill-total"].map(function(name){
+  ["year", "salary", "family-count", "is-boss", "pay", "bli-idv", "bli-com", "bli-salary", "bli", "bli-ret", "nhi-idv", "nhi-com", "nhi", "disaster-rate", "bill-total", "prize", "prize-minus", "prize-pretax", "prize-nhi1", "prize-nhi2", "prize-real", "prize-spend"].map(function(name){
     return el[name] = ld$.find(document, "*[data-var=" + name + "]", 0);
   });
   el.salary.addEventListener('keyup', function(){
@@ -97,6 +98,22 @@
   el["year"].addEventListener('change', function(){
     return prepare(el["year"].value);
   });
+  el["prize"].addEventListener('keyup', function(){
+    return prizeCalc();
+  });
+  el["prize-minus"].addEventListener('keyup', function(){
+    return prizeCalc();
+  });
+  prizeCalc = function(){
+    var prize, prizeMinus, pretax, nhi1, ref$, nhi2;
+    prize = +(el["prize"].value || 0);
+    prizeMinus = +(el["prize-minus"].value || 0) * 4;
+    el["prize-pretax"].value = pretax = Math.floor(prize * 0.05);
+    el["prize-nhi1"].value = nhi1 = Math.round(((ref$ = prize - prizeMinus) > 0 ? ref$ : 0) * rates["nhi-2nd"]);
+    el["prize-nhi2"].value = nhi2 = Math.round(prize * rates["nhi-2nd"]);
+    el["prize-real"].value = prize - pretax - nhi1;
+    return el["prize-spend"].value = prize + nhi2;
+  };
   calc = function(){
     var salary, bliSalary, ref$, isBoss, blis, v, minus, data, i$, i, obj, familyCount, v1, v2;
     salary = +el.salary.value;
