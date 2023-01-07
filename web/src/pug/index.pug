@@ -1,11 +1,11 @@
 doctype html
 html
-  include @/@loadingio/bootstrap.ext/dist/index.pug
+  include @/@loadingio/bootstrap.ext/index.pug
   head
     meta(charset="utf-8")
     +css([
-      {name: "bootstrap", version: "main", path: "css/bootstrap.min.css"},
-      {name: "@loadingio/bootstrap.ext", version: "main", path: "index.min.css"},
+      {name: "bootstrap", version: "main", path: "dist/css/bootstrap.min.css"},
+      {name: "@loadingio/bootstrap.ext"},
       {url: "css/index.css"}
     ])
   body
@@ -94,6 +94,6 @@ html
                 input.form-control(data-var="nhi",disabled)
   +script([
     {name: "papaparse", version: "main", path: "papaparse.min.js"},
-    {name: "@loadingio/ldquery", version: "main", path: "ldq.min.js"},
+    {name: "@loadingio/ldquery"},
     {url: "js/index.js"}
   ])
