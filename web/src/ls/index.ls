@@ -91,7 +91,11 @@ el["prize-minus"].addEventListener \keyup, -> prize-calc!
 prize-calc = ->
   prize = +(el["prize"].value or 0)
   prize-minus = +(el["prize-minus"].value or 0) * 4
+  # https://www.ntbna.gov.tw/singlehtml/99ee6afefbbf43939bdb4802aa610cc1?cntId=8a98d8c08b5343cdb18e39c8d66eb116
+  # `各種所得扣繳金額小數四捨五入或捨去?` ->  一律收至元為止，角以下免收
   el["prize-pretax"].value = pretax = Math.floor(prize * 0.05)
+  # https://www.nhi.gov.tw/Nhi2/QA_Detail.aspx?n=696A8028EA3C410C&topn=0B69A546F5DF84DC&page=15&QID=461
+  # 保險費之繳納，以元為單位，角以下4捨5入
   el["prize-nhi1"].value = nhi1 = Math.round(((prize - prize-minus) >? 0) * rates["nhi-2nd"])
   el["prize-nhi2"].value = nhi2 = Math.round(prize * rates["nhi-2nd"])
   el["prize-real"].value = prize - pretax - nhi1
