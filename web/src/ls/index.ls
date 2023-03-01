@@ -105,12 +105,24 @@ calc = ~>
   salary = +el.salary.value
   bli-salary = (bli.worker.filter(-> it.salary >= salary).0 or bli.worker[* - 1]).salary
   is-boss = el["is-boss"].checked
+
   blis = [@rates["普通保費"], @rates["就業保費"], +el["disaster-rate"].value * 0.01].map -> bli-salary * it
-  v = (blis.0 + (if is-boss => 0 else blis.1))
-  el["bli-idv"].value = minus = Math.round(v * @rates["bli-idv"])
-  el["bli-com"].value = Math.round(v * @rates["bli-com"]) + Math.round(blis.2)
+
+  bli-idv-basic = Math.round(blis.0 * @rates["bli-idv"])
+  bli-idv-disaster = Math.round((if is-boss => 0 else blis.1) * @rates["bli-idv"])
+  bli-com-basic = Math.round(blis.0 * @rates["bli-com"])
+  bli-com-disaster = Math.round((if is-boss => 0 else blis.1) * @rates["bli-com"])
+  bli-com-job = Math.round(blis.2)
+
+  el["bli-idv"].value = minus = ( bli-idv-basic + bli-idv-disaster)
+  el["bli-com"].value = ( bli-com-basic + bli-com-disaster + bli-com-job )
+
+  #v = (blis.0 + (if is-boss => 0 else blis.1))
+  #el["bli-idv"].value = minus = Math.round(v * @rates["bli-idv"])
+  #el["bli-com"].value = Math.round(v * @rates["bli-com"]) + Math.round(blis.2)
   el["bli-salary"].value = (if is-boss => 0 else Math.round(salary * @rates["工資墊償"]))
   el["bli-ret"].value = if is-boss => 0 else Math.round(salary * 0.06)
+
   el.bli.value = (+el["bli-idv"].value) + (+el["bli-com"].value) + (+el["bli-salary"].value)
   data = if is-boss => nhi.boss else nhi.worker
   if data =>

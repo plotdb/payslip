@@ -115,7 +115,7 @@
     return el["prize-spend"].value = prize + nhi2;
   };
   calc = function(){
-    var salary, bliSalary, ref$, isBoss, blis, v, minus, data, i$, i, obj, familyCount, v1, v2;
+    var salary, bliSalary, ref$, isBoss, blis, bliIdvBasic, bliIdvDisaster, bliComBasic, bliComDisaster, bliComJob, minus, data, i$, i, obj, familyCount, v1, v2;
     salary = +el.salary.value;
     bliSalary = (bli.worker.filter(function(it){
       return it.salary >= salary;
@@ -124,11 +124,17 @@
     blis = [this$.rates["普通保費"], this$.rates["就業保費"], +el["disaster-rate"].value * 0.01].map(function(it){
       return bliSalary * it;
     });
-    v = blis[0] + (isBoss
+    bliIdvBasic = Math.round(blis[0] * this$.rates["bli-idv"]);
+    bliIdvDisaster = Math.round((isBoss
       ? 0
-      : blis[1]);
-    el["bli-idv"].value = minus = Math.round(v * this$.rates["bli-idv"]);
-    el["bli-com"].value = Math.round(v * this$.rates["bli-com"]) + Math.round(blis[2]);
+      : blis[1]) * this$.rates["bli-idv"]);
+    bliComBasic = Math.round(blis[0] * this$.rates["bli-com"]);
+    bliComDisaster = Math.round((isBoss
+      ? 0
+      : blis[1]) * this$.rates["bli-com"]);
+    bliComJob = Math.round(blis[2]);
+    el["bli-idv"].value = minus = bliIdvBasic + bliIdvDisaster;
+    el["bli-com"].value = bliComBasic + bliComDisaster + bliComJob;
     el["bli-salary"].value = isBoss
       ? 0
       : Math.round(salary * this$.rates["工資墊償"]);
