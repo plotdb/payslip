@@ -140,4 +140,4 @@ calc = ~>
   el["pay"].value = salary - minus
   el["bill-total"].value = [el["nhi"].value, el["bli"].value, el["bli-ret"].value].reduce(((a,b) -> a + +b),0)
 
-prepare 112
+prepare 113
