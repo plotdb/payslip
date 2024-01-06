@@ -35,10 +35,10 @@
     ]
   },
   "dependencies": {
-    "@loadingio/bootstrap.ext": "^0.0.9",
+    "@loadingio/bootstrap.ext": "^0.0.11",
     "@loadingio/ldquery": "^3.0.4",
     "bootstrap": "^4.6.1",
-    "bootstrap.native": "^4.0.7",
+    "bootstrap.native": "^3.0.14",
     "papaparse": "^5.3.1"
   }
 }
