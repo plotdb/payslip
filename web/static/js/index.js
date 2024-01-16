@@ -62,6 +62,7 @@
     return Promise.all([p1, p2, p3]);
   };
   prepare = function(year){
+    ld$.find(document, "*[data-var=year]", 0).value = year;
     return parse(year).then(function(){
       return ld$.fetch("/assets/data/" + year + ".json", {
         method: "GET"
