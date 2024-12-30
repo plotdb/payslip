@@ -78,7 +78,7 @@
       return calc();
     });
   };
-  ["year", "salary", "family-count", "is-boss", "pay", "bli-idv", "bli-com", "bli-salary", "bli", "bli-ret", "nhi-idv", "nhi-com", "nhi", "disaster-rate", "bill-total", "prize", "prize-minus", "prize-pretax", "prize-nhi1", "prize-nhi2", "prize-real", "prize-spend"].map(function(name){
+  ["year", "salary", "family-count", "is-boss", "bonus-4timed", "pay", "bli-idv", "bli-com", "bli-salary", "bli", "bli-ret", "nhi-idv", "nhi-com", "nhi", "disaster-rate", "bill-total", "prize", "prize-minus", "prize-pretax", "prize-nhi1", "prize-nhi2", "prize-real", "prize-spend"].map(function(name){
     return el[name] = ld$.find(document, "*[data-var=" + name + "]", 0);
   });
   el.salary.addEventListener('keyup', function(){
@@ -92,6 +92,12 @@
   });
   el["is-boss"].addEventListener('input', function(){
     return calc();
+  });
+  el["bonus-4timed"].addEventListener('click', function(){
+    return prizeCalc();
+  });
+  el["bonus-4timed"].addEventListener('input', function(){
+    return prizeCalc();
   });
   el["disaster-rate"].addEventListener('input', function(){
     return calc();
@@ -109,6 +115,9 @@
     var prize, prizeMinus, pretax, nhi1, ref$, nhi2;
     prize = +(el["prize"].value || 0);
     prizeMinus = +(el["prize-minus"].value || 0) * 4;
+    if (el["bonus-4timed"].checked) {
+      prizeMinus = 0;
+    }
     el["prize-pretax"].value = pretax = Math.floor(prize * 0.05);
     el["prize-nhi1"].value = nhi1 = Math.round(((ref$ = prize - prizeMinus) > 0 ? ref$ : 0) * rates["nhi-2nd"]);
     el["prize-nhi2"].value = nhi2 = Math.round(prize * rates["nhi-2nd"]);

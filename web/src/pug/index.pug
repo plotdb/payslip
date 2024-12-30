@@ -115,9 +115,14 @@ html
             label 代扣所得稅
             input.form-control(data-var="prize-pretax", disabled)
           .form-group
-            label 二代健保(獎金部份) #[span.text-muted.text-sm / 個人負擔]
+            .d-flex.justify-content-between
+              label 二代健保(獎金部份) #[span.text-muted.text-sm / 個人負擔]
+              .form-check.align-items-center.mb-2
+                label.form-check-label.text-sm
+                  input.form-check-input.clickable(type="checkbox",data-var="bonus-4timed",style="margin-top:.25em")
+                  .clickable.no-select 先前已有獎金超過投保金額四倍，不需再次扣除
             input.form-control(data-var="prize-nhi1", disabled)
-            span.text-danger.text-sm * 負責人亦需扣除投保金額四倍部份
+            span.text-danger.text-sm * 負責人亦同雇員，應扣除超過投保金額四倍部份
           .form-group
             label 二代健保(薪資部份) #[span.text-muted.text-sm / 公司負擔]
             input.form-control(data-var="prize-nhi2", disabled)

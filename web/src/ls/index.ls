@@ -59,6 +59,7 @@ prepare = (year) ~>
   "salary",           # 投保薪資
   "family-count",     # 眷口數 ( 0 ~ 3, 不含自己 )
   "is-boss",          # 雇主 ( true or false )
+  "bonus-4timed",     # 是否已有先前獎金超過四倍薪資
   "pay",              # 實領薪資
   "bli-idv",          # 勞保/個人負擔
   "bli-com",          # 勞保/公司負擔
@@ -85,6 +86,8 @@ el.salary.addEventListener \keyup, -> calc!
 el["family-count"].addEventListener \change, -> calc!
 el["is-boss"].addEventListener \click, -> calc!
 el["is-boss"].addEventListener \input, -> calc!
+el["bonus-4timed"].addEventListener \click, -> prize-calc!
+el["bonus-4timed"].addEventListener \input, -> prize-calc!
 el["disaster-rate"].addEventListener \input, -> calc!
 el["year"].addEventListener \change, -> prepare el["year"].value
 el["prize"].addEventListener \keyup, -> prize-calc!
@@ -92,6 +95,7 @@ el["prize-minus"].addEventListener \keyup, -> prize-calc!
 prize-calc = ->
   prize = +(el["prize"].value or 0)
   prize-minus = +(el["prize-minus"].value or 0) * 4
+  if el["bonus-4timed"].checked => prize-minus = 0
   # https://www.ntbna.gov.tw/singlehtml/99ee6afefbbf43939bdb4802aa610cc1?cntId=8a98d8c08b5343cdb18e39c8d66eb116
   # `各種所得扣繳金額小數四捨五入或捨去?` ->  一律收至元為止，角以下免收
   el["prize-pretax"].value = pretax = Math.floor(prize * 0.05)
