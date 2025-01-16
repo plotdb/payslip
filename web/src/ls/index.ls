@@ -108,8 +108,18 @@ prize-calc = ->
 
 calc = ~>
   salary = +el.salary.value
-  bli-salary = (bli.worker.filter(-> it.salary >= salary).0 or bli.worker[* - 1]).salary
   is-boss = el["is-boss"].checked
+  bli-salary = (bli.worker.filter(-> it.salary >= salary).0 or bli.worker[* - 1]).salary
+  nhi-used = if is-boss => nhi.boss else nhi.worker
+  nhi-salary = (nhi-used.filter(->it.salary >= salary).0 or nhi-used[* - 1]).salary
+
+  moddiv = document.querySelector '[ld="nhi-boss-salary-mod"]'
+  nhisalarydiv = document.querySelector '[ld="nhi-salary"]'
+  moddiv.classList.toggle \d-none, true
+  if @rates["雇主健保最低投保薪資"]? and is-boss and nhi-salary < @rates["雇主健保最低投保薪資"] =>
+    nhi-salary = @rates["雇主健保最低投保薪資"]
+    moddiv.classList.toggle \d-none, false
+    nhisalarydiv.textContent = nhi-salary
 
   blis = [@rates["普通保費"], @rates["就業保費"], +el["disaster-rate"].value * 0.01].map -> bli-salary * it
 
@@ -133,7 +143,7 @@ calc = ~>
   if data =>
     for i from data.length - 1 to 0 by -1  =>
       obj = data[i]
-      if !(obj.salary?) or obj.salary > salary => continue
+      if !(obj.salary?) or obj.salary > nhi-salary => continue
       family-count = +el["family-count"].value
       v1 = obj["p#{family-count}"]
       v2 = obj["com"] or 0
@@ -141,8 +151,10 @@ calc = ~>
       el["nhi-com"].value = v2
       el["nhi"].value = v1 + v2
       minus += v1
+      console.log nhi-salary
       break
   el["pay"].value = salary - minus
   el["bill-total"].value = [el["nhi"].value, el["bli"].value, el["bli-ret"].value].reduce(((a,b) -> a + +b),0)
+
 
 prepare 114

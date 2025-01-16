@@ -125,12 +125,26 @@
     return el["prize-spend"].value = prize + nhi2;
   };
   calc = function(){
-    var salary, bliSalary, ref$, isBoss, blis, bliIdvBasic, bliIdvDisaster, bliComBasic, bliComDisaster, bliComJob, minus, data, i$, i, obj, familyCount, v1, v2;
+    var salary, isBoss, bliSalary, ref$, nhiUsed, nhiSalary, moddiv, nhisalarydiv, blis, bliIdvBasic, bliIdvDisaster, bliComBasic, bliComDisaster, bliComJob, minus, data, i$, i, obj, familyCount, v1, v2;
     salary = +el.salary.value;
+    isBoss = el["is-boss"].checked;
     bliSalary = (bli.worker.filter(function(it){
       return it.salary >= salary;
     })[0] || (ref$ = bli.worker)[ref$.length - 1]).salary;
-    isBoss = el["is-boss"].checked;
+    nhiUsed = isBoss
+      ? nhi.boss
+      : nhi.worker;
+    nhiSalary = (nhiUsed.filter(function(it){
+      return it.salary >= salary;
+    })[0] || nhiUsed[nhiUsed.length - 1]).salary;
+    moddiv = document.querySelector('[ld="nhi-boss-salary-mod"]');
+    nhisalarydiv = document.querySelector('[ld="nhi-salary"]');
+    moddiv.classList.toggle('d-none', true);
+    if (this$.rates["雇主健保最低投保薪資"] != null && isBoss && nhiSalary < this$.rates["雇主健保最低投保薪資"]) {
+      nhiSalary = this$.rates["雇主健保最低投保薪資"];
+      moddiv.classList.toggle('d-none', false);
+      nhisalarydiv.textContent = nhiSalary;
+    }
     blis = [this$.rates["普通保費"], this$.rates["就業保費"], +el["disaster-rate"].value * 0.01].map(function(it){
       return bliSalary * it;
     });
@@ -159,7 +173,7 @@
       for (i$ = data.length - 1; i$ >= 0; --i$) {
         i = i$;
         obj = data[i];
-        if (!(obj.salary != null) || obj.salary > salary) {
+        if (!(obj.salary != null) || obj.salary > nhiSalary) {
           continue;
         }
         familyCount = +el["family-count"].value;
@@ -169,6 +183,7 @@
         el["nhi-com"].value = v2;
         el["nhi"].value = v1 + v2;
         minus += v1;
+        console.log(nhiSalary);
         break;
       }
     }

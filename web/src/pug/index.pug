@@ -82,7 +82,9 @@ html
 
         .col-sm-4
           .card.info: .card-body
-            h3 健保
+            .d-flex.justify-content-between.align-items-center.mb-3
+              h3.mb-0 健保
+              .text-sm.d-none(ld="nhi-boss-salary-mod") 雇主薪資以 #[span(ld="nhi-salary")] 計
             hr
             .form
               .form-group
