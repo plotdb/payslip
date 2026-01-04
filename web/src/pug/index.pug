@@ -13,6 +13,7 @@ html
       .text-muted.my-4.d-flex.align-items-center
         span 注意：公式 / 級距表版本為
         select.form-control.form-control-sm.mx-2(data-var="year",style="width:5em")
+          option(value="115") 115
           option(value="114") 114
           option(value="113") 113
           option(value="112") 112
@@ -27,7 +28,7 @@ html
             .form
               .form-group
                 label 薪資 #[small.text-secondary  / 跟員工說會給的數字]
-                input.form-control(placeholder="2022年起最低薪資為 25,250 NTD",data-var="salary",value="25250")
+                input.form-control(placeholder="2026年起最低薪資為 29,500 NTD",data-var="salary",value="29500")
               .form-group
                 label 眷口數 #[small.text-secondary  / 除自己外，多少人跟自己一起報健保?]
                 select.form-control(data-var="family-count")
